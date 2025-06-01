@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Pogoda</title>
+</head>
+<body>
+  <h1>Sprawdź pogodę</h1>
+  <select id="city-select">
+    <option value="Warsaw">Warszawa</option>
+    <option value="Budapest">Budapeszt</option>
+    <option value="Rome">Rzym</option>
+  </select>
+
+  <div id="weather-info"></div>
+
+  <script>
+    const select = document.getElementById('city-select');
+    const info = document.getElementById('weather-info');
+
+    async function getWeather(city) {
+      const res = await fetch(`/weather?city=${city}`);
+      const data = await res.json();
+
+      if (data.error) {
+        info.innerHTML = `<p>Błąd: ${data.error}</p>`;
+      } else {
+        info.innerHTML = `
+          <h2>${data.city}</h2>
+          <p>Temperatura: ${data.temp}°C</p>
+          <p>Opis: ${data.description}</p>
+          <img src="https://openweathermap.org/img/wn/${data.icon}@2x.png" alt="ikona">
+        `;
+      }
+    }
+
+    select.addEventListener('change', () => {
+      getWeather(select.value);
+    });
+
+    getWeather(select.value);
+  </script>
+</body>
+</html>

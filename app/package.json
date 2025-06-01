@@ -1,0 +1,17 @@
+{
+  "name": "pogoda",
+  "description": "Prosta aplikacja serwerowa oparta na szkielecie Express",
+  "main": "index.js",
+  "keywords": [
+    "docker",
+    "server",
+    "node"
+  ],
+  "type": "commonjs",
+  "author": "BK",
+  "start": "node index.js",
+  "dependencies": {
+    "express": "^5.1.0",
+    "node-fetch": "^3.3.2"
+  }
+}
